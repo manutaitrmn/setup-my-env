@@ -1,0 +1,24 @@
+---
+
+- name: Add Hashicorp Apt signing key
+  become: true
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: Get current distribution
+  become: true
+  shell: lsb_release -cs
+  register: dist
+
+- name: Add Vagrant repository into sources list
+  become: true
+  apt_repository:
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ dist.stdout }} main
+    state: present
+
+- name: Install Vagrant package
+  become: true
+  apt:
+    update_cache: yes
+    name: vagrant

@@ -1,0 +1,6 @@
+---
+
+- name: Install Vagrant
+  hosts: localhost
+  roles:
+    - role: "roles/vagrant"

@@ -1,0 +1,6 @@
+---
+
+- name: Install awscli
+  hosts: localhost
+  roles:
+    - role: "roles/awscli"
